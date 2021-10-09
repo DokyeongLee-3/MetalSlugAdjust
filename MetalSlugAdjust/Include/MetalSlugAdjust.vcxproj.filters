@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01. GameManager">
+      <UniqueIdentifier>{1f31c513-8b75-4771-8f7a-fa5f42c3cfcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\01.Timer">
+      <UniqueIdentifier>{ca4ea2f3-852c-4477-a81e-a2b55a5126f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\03.Math">
+      <UniqueIdentifier>{997b60d1-8fce-4092-9458-9c25ff416c38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\02.Ref">
+      <UniqueIdentifier>{b6d51fe3-ae5e-406e-ba9f-5b148b3e8823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene">
+      <UniqueIdentifier>{ae6b690f-58de-4a0e-b526-442f4a314821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object">
+      <UniqueIdentifier>{d362db04-1fcf-473a-8421-6161fcd9ae19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\04.Input">
+      <UniqueIdentifier>{167741af-4c26-4079-b645-57433fbc2be2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\05.SharedPtr">
+      <UniqueIdentifier>{cf335243-5591-4113-8ce9-b791fec52372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\06.Path">
+      <UniqueIdentifier>{790b4c60-0bc4-4017-84e6-403cdca78a1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Resource">
+      <UniqueIdentifier>{d929cd3d-e1c3-4800-8e09-a7fb2d73320b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Resource\01.Texture">
+      <UniqueIdentifier>{edefdf34-1325-415f-bdf4-8b881a21cf06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\01.Resource">
+      <UniqueIdentifier>{5d80b769-eac2-4d96-9aba-04a56da1d199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Resource\02.Animation">
+      <UniqueIdentifier>{03d4741d-bd12-479b-b5b7-72c3cefdfdcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Animation">
+      <UniqueIdentifier>{00260989-584f-4245-a8da-707a79949930}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>01. GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>01. GameManager\01.Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Ref.cpp">
+      <Filter>01. GameManager\02.Ref</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>01. GameManager\03.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\MainScene.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObject.cpp">
+      <Filter>03.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>01. GameManager\04.Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>01. GameManager\06.Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Texture.cpp">
+      <Filter>04.Resource\01.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneResource.cpp">
+      <Filter>02.Scene\01.Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\ResourceManager.cpp">
+      <Filter>04.Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\AnimationSequence.cpp">
+      <Filter>04.Resource\02.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>05.Animation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>01. GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>01. GameManager\01.Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Ref.h">
+      <Filter>01. GameManager\02.Ref</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>01. GameManager\03.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MainScene.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObject.h">
+      <Filter>03.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>01. GameManager\04.Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedPtr.h">
+      <Filter>01. GameManager\05.SharedPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>01. GameManager\06.Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Texture.h">
+      <Filter>04.Resource\01.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneResource.h">
+      <Filter>02.Scene\01.Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\ResourceManager.h">
+      <Filter>04.Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\AnimationSequence.h">
+      <Filter>04.Resource\02.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>05.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\AnimationInfo.h">
+      <Filter>05.Animation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MetalSlugAdjust.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
