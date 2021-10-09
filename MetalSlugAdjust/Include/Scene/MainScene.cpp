@@ -47,6 +47,8 @@ CMainScene::CMainScene()	:
 
 	CInput::GetInst()->SetCallback<CMainScene>("RightXStartPos5", KeyState_Down, this, &CMainScene::RightXStartPos5);
 	CInput::GetInst()->SetCallback<CMainScene>("LeftXStartPos5", KeyState_Down, this, &CMainScene::LeftXStartPos5);
+
+	CInput::GetInst()->SetCallback<CMainScene>("MergeText", KeyState_Down, this, &CMainScene::MergeTextFile);
 }
 
 CMainScene::~CMainScene()
@@ -1282,15 +1284,13 @@ void CMainScene::SwapControl(float DeltaTime)
 
 void CMainScene::SaveInfo(float DeltaTime)
 {
-	char NewLine[3] = "\n";
-
 	FILE* FileStream;
 
 	CGameObject* Top = FindObject("PlayerTop");
 
 	std::string FileName = Top->m_vecAnimation[m_CurrentTopAnimIndex];
 
-	FileName += ".txt";
+	FileName += "_New.txt";
 
 	fopen_s(&FileStream, FileName.c_str(), "wt");
 
@@ -1298,8 +1298,9 @@ void CMainScene::SaveInfo(float DeltaTime)
 	{
 		FileName.clear();
 		FileName = Top->m_vecAnimation[m_CurrentTopAnimIndex];
-		FileName += "\n";
-		fputs(FileName.c_str(), FileStream);
+		int Length = (int)FileName.length();
+		fwrite(&Length, sizeof(int), 1, FileStream);
+		fwrite(FileName.c_str(), sizeof(char), Length, FileStream);
 
 		int FrameCount = Top->m_Animation->GetCurrentAnimation()->Sequence->GetFrameCount();
 
@@ -1316,7 +1317,7 @@ void CMainScene::SaveInfo(float DeltaTime)
 
 	FileName.clear();
 	FileName = Bottom->m_vecAnimation[m_CurrentBottomAnimIndex];
-	FileName += ".txt";
+	FileName += "_New.txt";
 
 	fopen_s(&FileStream, FileName.c_str(), "wt");
 
@@ -1324,8 +1325,9 @@ void CMainScene::SaveInfo(float DeltaTime)
 	{
 		FileName.clear();
 		FileName = Bottom->m_vecAnimation[m_CurrentBottomAnimIndex];
-		FileName += "\n";
-		fputs(FileName.c_str(), FileStream);
+		int Length = (int)FileName.length();
+		fwrite(&Length, sizeof(int), 1, FileStream);
+		fwrite(FileName.c_str(), sizeof(char), Length, FileStream);
 
 		int FrameCount = Bottom->m_Animation->GetCurrentAnimation()->Sequence->GetFrameCount();
 
@@ -1337,7 +1339,6 @@ void CMainScene::SaveInfo(float DeltaTime)
 
 		fclose(FileStream);
 	}
-
 }
 
 void CMainScene::LoadInfo(float DeltaTime)
@@ -1677,6 +1678,101 @@ void CMainScene::DecreaseYFrameSize(float DeltaTime)
 		AnimationInfo* Info = PlayerBottom->m_Animation->GetCurrentAnimation();
 
 		PlayerBottom->m_Animation->SetCurrentAnimationYFrameSize(-1.f, Info->Frame);
+	}
+}
+
+void CMainScene::MergeTextFile(float DeltaTime)
+{
+	FILE* FileStream;
+
+	std::vector<std::string> m_vecTopFrame;
+	std::vector<std::string> m_vecBottomFrame;
+
+	CGameObject* Top = FindObject("PlayerTop");
+	CGameObject* Bottom = FindObject("PlayerBottom");
+
+	m_vecTopFrame.push_back("PlayerIdleRightTop");
+	m_vecTopFrame.push_back("PlayerIdleLeftTop");
+	m_vecTopFrame.push_back("PlayerNormalFireRightTop");
+	m_vecTopFrame.push_back("PlayerNormalFireLeftTop");
+	m_vecTopFrame.push_back("PlayerRunRightTop");
+	m_vecTopFrame.push_back("PlayerRunLeftTop");
+	m_vecTopFrame.push_back("PlayerVerticalJumpRightTop");
+	m_vecTopFrame.push_back("PlayerVerticalJumpLeftTop");
+	m_vecTopFrame.push_back("PlayerJumpDownRightTop");
+	m_vecTopFrame.push_back("PlayerJumpDownLeftTop");
+	m_vecTopFrame.push_back("PlayerJumpAttackDownRightTop");
+	m_vecTopFrame.push_back("PlayerJumpAttackDownLeftTop");
+	m_vecTopFrame.push_back("PlayerLookUpRightTop");
+	m_vecTopFrame.push_back("PlayerLookUpLeftTop");
+	m_vecTopFrame.push_back("PlayerLookUpAttackRightTop");
+	m_vecTopFrame.push_back("PlayerLookUpAttackLeftTop");
+	m_vecTopFrame.push_back("PlayerFrontJumpRightTop");
+	m_vecTopFrame.push_back("PlayerFrontJumpLeftTop");
+	m_vecTopFrame.push_back("PlayerBombRightTop");
+	m_vecTopFrame.push_back("PlayerBombLeftTop");
+
+
+	m_vecBottomFrame.push_back("PlayerIdleRightBottom1");
+	m_vecBottomFrame.push_back("PlayerIdleLeftBottom1");
+	m_vecBottomFrame.push_back("PlayerNormalFireRightBottom");
+	m_vecBottomFrame.push_back("PlayerNormalFireLeftBottom");
+	m_vecBottomFrame.push_back("PlayerRunRightBottom");
+	m_vecBottomFrame.push_back("PlayerRunLeftBottom");
+	m_vecBottomFrame.push_back("PlayerVerticalJumpRightBottom1");
+	m_vecBottomFrame.push_back("PlayerVerticalJumpLeftBottom1");
+	m_vecBottomFrame.push_back("PlayerFrontJumpRightBottom");
+	m_vecBottomFrame.push_back("PlayerFrontJumpLeftBottom");
+	m_vecBottomFrame.push_back("PlayerSitDownIdleRight");
+	m_vecBottomFrame.push_back("PlayerSitDownIdleLeft");
+	m_vecBottomFrame.push_back("PlayerCrawlRight");
+	m_vecBottomFrame.push_back("PlayerCrawlLeft");
+	m_vecBottomFrame.push_back("PlayerSitDownNormalAttackRight");
+	m_vecBottomFrame.push_back("PlayerSitDownNormalAttackLeft");
+	m_vecBottomFrame.push_back("PlayerSitDownBombRight");
+	m_vecBottomFrame.push_back("PlayerSitDownBombLeft");
+
+	const std::string FileName = "PlayerFrameData.fdat";
+
+	fopen_s(&FileStream, FileName.c_str(), "wb");
+
+	if (FileStream)
+	{	
+		// TopAnimation FrameData 작성
+		int Size = (size_t)m_vecTopFrame.size();
+		for (int i = 0; i < Size; ++i)
+		{
+			int AnimNameLength = (int)m_vecTopFrame[i].length();
+			fwrite(&AnimNameLength, sizeof(int), 1, FileStream);
+			fwrite(m_vecTopFrame[i].c_str(), sizeof(char), AnimNameLength, FileStream);
+
+			int FrameCount = GetSceneResource()->FindAnimationSequence(m_vecTopFrame[i])->GetFrameCount();
+			
+			for (int j = 0; j < FrameCount; ++j)
+			{
+				const AnimationFrameData& Data = GetSceneResource()->FindAnimationSequence(m_vecTopFrame[i])->GetFrameData(j);
+				fwrite(&Data, sizeof(AnimationFrameData), 1, FileStream);
+			}
+
+		}
+
+		// BottomAnimation FrameData 작성
+		Size = (size_t)m_vecBottomFrame.size();
+		for (int i = 0; i < Size; ++i)
+		{
+			int AnimNameLength = (int)m_vecBottomFrame[i].length();
+			fwrite(&AnimNameLength, sizeof(int), 1, FileStream);
+			fwrite(m_vecBottomFrame[i].c_str(), sizeof(char), AnimNameLength, FileStream);
+
+			int FrameCount = GetSceneResource()->FindAnimationSequence(m_vecBottomFrame[i])->GetFrameCount();
+
+			for (int j = 0; j < FrameCount; ++j)
+			{
+				const AnimationFrameData& Data = GetSceneResource()->FindAnimationSequence(m_vecBottomFrame[i])->GetFrameData(j);
+				fwrite(&Data, sizeof(AnimationFrameData), 1, FileStream);
+			}
+
+		}
 	}
 }
 

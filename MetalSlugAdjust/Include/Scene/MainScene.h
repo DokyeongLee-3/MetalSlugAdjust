@@ -61,5 +61,7 @@ private:
 	void DecreaseXFrameSize(float DeltaTime);
 	void IncreaseYFrameSize(float DeltaTime);
 	void DecreaseYFrameSize(float DeltaTime);
+
+	void MergeTextFile(float DeltaTime);
 };
 

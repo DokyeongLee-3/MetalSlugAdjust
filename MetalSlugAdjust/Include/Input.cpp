@@ -155,6 +155,8 @@ bool CInput::Init(HWND hWnd)
 	CreateKey("RightXStartPos5", 'Z');
 	CreateKey("LeftXStartPos5", 'X');
 
+	CreateKey("MergeText", 'M');
+
 	ShowCursor(FALSE);
 
 	return true;
