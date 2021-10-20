@@ -155,7 +155,11 @@ bool CInput::Init(HWND hWnd)
 	CreateKey("RightXStartPos5", 'Z');
 	CreateKey("LeftXStartPos5", 'X');
 
-	CreateKey("MergeText", 'M');
+	CreateKey("MergePlayerFile", 'M');
+	CreateKey("MergeArabianFile", 'N');
+	CreateKey("MergeNPCFile", 'B');
+
+	CreateKey("SwapZOrder", 'O');
 
 	ShowCursor(FALSE);
 

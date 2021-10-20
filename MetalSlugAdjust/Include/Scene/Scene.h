@@ -17,12 +17,15 @@ private:
 public:
 	CSceneResource* GetSceneResource()	const;
 
+
+protected:
+	std::list<CSharedPtr<CGameObject>>	m_ObjList;
+
 private:
 	// ObjList에 넣어서 Update, PostUpdate등을 해주는게 아니라
 	// 따로 빼서 제일 먼저 Update, PostUpdate등을 처리해준다
 	// 왜냐하면 Player의 갱신된 정보를 바탕으로 처리해야 할 것들이 있기 때문
 	CSharedPtr<CGameObject>	m_Player;
-	std::list<CSharedPtr<CGameObject>>	m_ObjList;
 	// list보다 삽입, 삭제를 빠르게 할 수 있는
 	// 동적 배열 사용. 화면 안에 있는 object들만 여기 담아서
 	// Rendering 할 것임

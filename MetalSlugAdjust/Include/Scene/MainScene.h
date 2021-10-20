@@ -16,6 +16,7 @@ private:
 	std::vector<std::string> m_vecAnimationName;
 	int m_CurrentTopAnimIndex;
 	int m_CurrentBottomAnimIndex;
+	bool m_TopBiggerZOrder;
 
 public:
 	virtual bool Init();
@@ -62,6 +63,10 @@ private:
 	void IncreaseYFrameSize(float DeltaTime);
 	void DecreaseYFrameSize(float DeltaTime);
 
-	void MergeTextFile(float DeltaTime);
+	void MergePlayerFrameDataFile(float DeltaTime);
+	void MergeArabianFrameDataFile(float DeltaTime);
+	void MergeNPCFrameDataFile(float DeltaTime);
+
+	void SwapZOrder(float DeltaTime);
 };
 

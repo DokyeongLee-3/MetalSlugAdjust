@@ -156,21 +156,6 @@ void CGameObject::SetScene(CScene* Scene)
 		m_Animation->m_Scene = Scene;
 }
 
-
-//void CGameObject::Move(const Vector2& Dir)
-//{
-//	Vector2 CurrentMove = Dir * m_MoveSpeed * CGameManager::GetInst()->GetDeltaTime() * m_TimeScale;
-//	m_Velocity += CurrentMove;
-//	m_Pos += CurrentMove;
-//}
-//
-//void CGameObject::Move(const Vector2& Dir, float Speed)
-//{
-//	Vector2 CurrentMove = Dir * Speed * CGameManager::GetInst()->GetDeltaTime() * m_TimeScale;
-//	m_Velocity += CurrentMove;
-//	m_Pos += CurrentMove;
-//}
-
 void CGameObject::SetTexture(const std::string& Name)
 {
 	m_Texture = m_Scene->GetSceneResource()->FindTexture(Name);
@@ -410,6 +395,8 @@ void CGameObject::Render(HDC hDC)
 	TCHAR LeftStartPos5[64] = {};
 	TCHAR RightStartPos5[64] = {};
 
+	TCHAR SwapZOrder[64] = {};
+
 	lstrcpy(SwapControl, TEXT("NumPad0 : Swap Control Part"));
 
 	lstrcpy(IncreaseXOffset, TEXT("NumPad6 : Move X Offset +1 Pixel"));
@@ -441,6 +428,7 @@ void CGameObject::Render(HDC hDC)
 	lstrcpy(LeftStartPos5, TEXT("Z : Left StartPos + 5"));
 	lstrcpy(RightStartPos5, TEXT("X : Right StartPos + 5"));
 
+	lstrcpy(SwapZOrder, TEXT("O : Swap ZOrder"));
 
 	TextOut(hDC, (int)700.f, (int)60.f, SwapControl, lstrlen(SwapControl));
 
@@ -473,6 +461,8 @@ void CGameObject::Render(HDC hDC)
 
 	TextOut(hDC, (int)700.f, (int)640.f, LeftStartPos5, lstrlen(LeftStartPos5));
 	TextOut(hDC, (int)700.f, (int)660.f, RightStartPos5, lstrlen(RightStartPos5));
+
+	TextOut(hDC, (int)700.f, (int)700.f, SwapZOrder, lstrlen(SwapZOrder));
 }
 
 CGameObject* CGameObject::Clone()
